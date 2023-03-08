@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+   @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+}
+body {
+  background: #bae8f7; /* background colour for overall page */
+}
+section {
+  position: relative;
+  padding: 100px;
+}
+
+.header { /* header section at the top of the page*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000000;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.header .logo { /* Header logo which is jamaica*/
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+.header .toggle,
+.resToggle {
+  color: #fff;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+/* settings for banner picture*/
+.banner {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+.banner:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  z-index: 1;
+  background: linear-gradient(to top, #bae6f8, transparent); 
+}
+.banner .content {
+  position: relative;
+  max-width: 900;
+  text-align: center;
+  z-index: 1;
+}
+.banner .content h2 {
+  color: #fff;
+  font-size: 5em;
+}
+.banner .content p {
+  color: #fff;
+  font-size: 1.2em;
+}
+
+/* settings for button*/
+.btn {
+  position: relative;
+  display: inline-block;
+  margin-top: 30px;
+  padding: 10px 30px;
+  background: #1b6b91;
+  color: #fdf9f9;
+  text-decoration: none;
+}
+.fitBg { 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /*Pictures*/
+}
+
+/* description*/
+.about {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.about .contentBx {
+  min-width: 50%;
+  width: 50%;
+  text-align: end;
+  padding-right: 40px;
+}
+.titleText {
+  font-weight: 600;
+  color: #1e5b60;
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+.text {
+  color: #161616;
+  font-size: 1em;
+}
+/* weather settings*/
+.about .imgBx {
+  position: relative;
+  min-width: 50%;
+  width: 50%;
+  min-height: 500px; 
+}
+
+/* Card box*/
+.destination {
+  text-align: center;
+}
+.destination .content2 {
+  text-align: center;
+}
+.destination .destinationList {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+.destination .destinationList .box {
+  position: relative;
+  min-width: 350px;
+  height: 480px;
+  background: #60a3c0;
+  transition: 0.5s;
+  margin: 10px;
+  border-radius: 0.625rem;
+  box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+.destination .destinationList:hover .box {
+  opacity: 0.5
+}
+.destination .destinationList .box:hover {
+  opacity: 1;
+}
+.destination .destinationList .box .imgBx {
+  position: relative;
+  width:100%;
+  height: 400px;
+}
+.destination .destinationList .box .content {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.destination .destinationList .box .content h2 {
+  color: #fff;
+  font-weight: 500;
+  line-height: 1.2em;
+}
+.destination .destinationList .box .content h2 span {
+  font-size: 0.8em;
+  opacity: 0.5;
+}
+
+.destination .destinationList .box .content button {
+   padding: 0.75em 1.6em;
+  width: fit-content;
+  width: -moz-fit-content; 
+  font-variant: small-caps;
+  font-weight: bold;
+  border-radius: 0.45em;
+  border: none;
+  background-color: var(--brand-color);
+  font-family: var(--font-title);
+  font-size: 1.125rem;
+  color: var(--black);
+}
+
+
+.resToggle {
+  position: absolute;
+  top: 20px;
+  right: 100px;
+}
+
+/* button to top*/
+.toTop {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  padding: 10px 15px;
+  border-radius: 50%;
+  background: #fff;
+  color: #333;
+  font-size: 25px;
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s;
+}
+.toTop.active {
+  opacity: 0.7;
+  pointer-events: auto;
+}
+.toTop:hover.active {
+  opacity: 1;
+}
+@media (max-width: 767px) {
+  section {
+    padding: 40px;
+  }
+  .banner .content h2 {
+    font-size: 2.5em;
+  }
+  .banner .content p {
+    font-size: 1em;
+  }
+  .about {
+    flex-direction: column;
+  }
+  .about .contentBx,
+  .about .imgBx {
+    max-width: 100%;
+    width: 100%;
+    text-align: center;
+    padding-right: 0px;
+  }
+  .about .imgBx {
+    min-height: 250px;
+  }
+  .btn {
+    margin-bottom: 30px;
+  }
+
+  /* card box */
+  .destination .destinationList .box {
+    max-width: 350px;
+    min-width: initial;
+    width: 350px;
+    height: 400px;
+  }
+  .destination .destinationList .box .imgBx {
+    height: 320px;
+  }
+  
+  .resToggle {
+    right: 40px;
+  }
+
+  .center {
+  position: absolute;
+  display: inline-block;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+ /*dropdown settings*/
+.dropdown{
+  text-align: center;
+  padding: 10px 15px;
+}
+
+
+}
+</style>
+<body>
+  <!-- HEADER SECTION -->
+    <section class="header" id="header">
+        <a href="#" class="logo">
+          <h2>JAMAICA</h2>
+        </a>
+        <div class="toggle" onClick="menuToggle()"><i class="fa fa-bars"></i></div>
+        <div id="menu-overlay">
+          <div class="resToggle" onClick="menuToggle()"><i class="fa fa-close"></i></div>
+        </div>
+      </section>
+    <!-- BANNER (BG PICTURE AT TOP)-->
+      <section class="banner">
+        <img src="https://wallpaperaccess.com/full/537319.jpg" alt="nature" class="fitBg">
+        <div class="content">
+          <h2>WELCOME TO JAMAICA</h2>
+          <p>It's time to come back to a state of mind that only Jamaica can deliver.
+             Somewhere between the vibrant energy of our culture and the warm tranqulity
+            of our island is where the magic happens. Scroll down and have a look around at 
+        all the ways we an bring you back to feeling your best self again</p>
+          <a href="#about" class="btn">Learn More</a>
+        </div>
+      </section>
+      <!--WEATHER SECTION -->
+      <section class="about" id="about">
+        <div class="contentBx">
+            <h2 class="titleText">WEATHER IN JAMAICA</h2>
+            <div id="weather-data" class="location">
+            </div>
+            <a href="#destination" class="btn">Popular Destination</a>
+        </div>
+        <div class="imgBx">
+          <img src="https://www.sandals.com/blog/content/images/2020/01/Sandals-White-House-Jamaica-Over-Water-Bungalows.jpg" alt="img2" class="fitBg">
+        </div>
+      </section>
+      <!--DESTINATION CARD/ CARD BOX -->  
+      <section class="destination" id="destination">
+        <div class="content2">
+          <h2 class="titleText">EXPERIENCE OUR ISLAND</h2>
+        </div>
+        <div class="destinationList">
+          <div class="box">
+            <div class="imgBx">
+            <a href="place1.html"><img src="https://www.planetware.com/photos-large/JAM/jamaica-negril-negril-beach.jpg" alt="image4" class="fitBg"></a>
+            </div>
+            <div class="content">
+              <h2>NEGRIL BEACH</h2>
+            </div>
+          </div>
+          <div class="box">
+            <div class="imgBx">
+            <a href="place2.html"><img src="https://www.planetware.com/photos-large/JAM/jamaica-martha-brae-river2.jpg" alt="image5" class="fitBg"></a>
+            </div>
+            <div class="content">
+              <h2>Martha Brae River</h2>
+            </div>
+          </div>
+          <div class="box">
+            <div class="imgBx">
+            <a href="place3.html"><img src="https://www.planetware.com/photos-large/JAM/jamaica-dunns-river-falls.jpg" alt="image6" class="fitBg"></a>
+            </div>
+            <div class="content">
+              <h2>Dunn's River Falls</h2>
+            </div>
+          </div>
+          <div class="box">
+            <div class="imgBx">
+            <a href="place4.html"><img src="https://www.planetware.com/photos-large/JAM/jamaica-doctors-cave-beach.jpg" alt="image6" class="fitBg"></a>
+            </div>
+            <div class="content">
+              <h2>Doctor's Cave Beach<br><span>Montego Beach</span></h2>
+            </div>
+          </div>
+          <div class="box">
+            <div class="imgBx">
+            <a href="place5.html"><img src="https://www.planetware.com/photos-large/JAM/jamaica-blue-hole.jpg" alt="image6" class="fitBg"></a>
+            </div>
+            <div class="content">
+              <h2>Blue Hole<br><span>Ocho Rios</span></h2>
+            </div>
+          </div>
+        </div>
+        <a href="#header" class="btn">Back to Top</a>
+      </section>
+
+      <div class="dropdown">
+        <form id="search-form">
+          <label for="meal-select">Select a meal:</label>
+          <select id="meal-select" name="meal-select">
+            <option value="">--Select a meal--</option>
+            <option value="Brown Stew Chicken">Brown Stew Chicken</option>
+            <option value="Jerk chicken with rice & peas">Jerk chicken with rice & peas</option>
+            <option value="Callaloo Jamaican Style">Callaloo Jamaican Style</option>
+            <option value="Saltfish and Ackee">Saltfish and Ackee</option>
+            <option value="Escovitch Fish">Escovitch Fish</option>       
+          </select>
+          <button type="submit">Search</button>
+        </form>
+        <div id="meal-details"></div>
+        <div id="ingredient-list"></div>
+    
+      </div>
+      
+
+</body>
+</html>
+<script>
+function menuToggle(){
+  var nav = document.getElementById('menu-overlay');
+  nav.classList.toggle('active');
+  var nav1 = document.getElementById('toggle');
+  nav1.classList.toggle('active');
+};
+//TO TOP FUNCTION JS
+const toTop = document.querySelector(".toTop");
+window.addEventListener("scroll", () => {
+  if (window.pageYOffset > 300) {
+    toTop.classList.add("active");
+  } else {
+    toTop.classList.remove("active");
+  }
+})
+//WEATHER JS
+const apiKey = '9fd7a449d055dba26a982a3220f32aa2';
+const city = 'Kingston';
+const country = 'JM';
+const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${apiKey}`;
+  
+// Fetch the weather data
+fetch(weatherUrl)
+  .then(response => response.json())
+  .then(data => {
+    const temperature = Math.round(data.main.temp - 273.15);
+    const tempMax = Math.round(data.main.temp_max - 273.15);
+    const tempMin = Math.round(data.main.temp_max - 273.15);
+    const description = data.weather[0].description;
+    const humidity = data.main.humidity;
+    const wind = data.wind.speed;
+    const deg = data.wind.deg;   
+  
+    // Display the weather data
+    const weatherData = document.querySelector('#weather-data');
+    weatherData.innerHTML = `
+    <div >
+      <h1>Kingston, JM</h1>
+      <h1>${temperature} &deg;C</h1>
+    <div>
+      <hr>
+      <p>Maximum temperature: ${tempMax}&deg;C</p>
+      <p>Minimum temperature: ${tempMin}&deg;C</p>
+      <p>Description: ${description}</p>
+      <p>Humidity: ${humidity}%</p>
+      <p>Wind: ${wind} mph</p>
+
+    `;
+    })
+    .catch(error => { 
+      const weatherData = document.querySelector('#weather-data');
+      weatherData.innerHTML = `<p>Error loading weather data: ${error.message}</p>`;
+});
+
+// meal coding js
+const searchForm = document.getElementById('search-form');
+const mealDetails = document.getElementById('meal-details');
+const ingredientList = document.getElementById('ingredient-list');
+
+searchForm.addEventListener('submit', (event) => {
+  event.preventDefault(); // prevent default form submit behavior
+
+  const mealSelect = document.getElementById('meal-select');
+  const mealName = mealSelect.options[mealSelect.selectedIndex].value;
+  const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${mealName}`;
+//fetch the meal data
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      if (data.meals === null) {
+        mealDetails.innerHTML = `<p>No meal found for '${mealName}'</p>`;
+        ingredientList.innerHTML = '';
+      } else {
+        const meal = data.meals[0];
+        mealDetails.innerHTML = `
+          <h2>${meal.strMeal}</h2>
+          <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+          <p>${meal.strInstructions}</p>
+        `;
+        const ingredients = getIngredients(meal);
+        ingredientList.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            ${ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+          </ul>
+        `;
+      }
+    })
+    .catch(error => {
+      mealDetails.innerHTML = `<p>Something went wrong: ${error}</p>`;
+      ingredientList.innerHTML = '';
+    });
+});
+
+function getIngredients(meal) {
+  const ingredients = [];
+  for (let i = 1; i <= 20; i++) {
+    if (meal[`strIngredient${i}`]) {
+      ingredients.push(`${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}`);
+    } else {
+      break;
+    }
+  }
+  return ingredients;
+}
+
+</script>
